@@ -17,7 +17,8 @@ class WorkoutsController extends Controller
 
   public function store(){
     $data = request()->validate([
-      'workout-name' => 'required',
+      'workout-type' => 'required',
+      'count' => 'numeric|required',
       'unit' => '',
     ]);
 
@@ -25,9 +26,11 @@ class WorkoutsController extends Controller
       $data['unit'] = '';
     }
 
+    dd($data);
+
+
     auth()->user()->workouts()->create($data);
 
-    //  return redirect('/profile/' + auth()->user()->id);
     return redirect()->action(
       'ProfilesController@index', ['user' => auth()->user()->id]
     );

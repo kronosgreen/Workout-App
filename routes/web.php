@@ -22,6 +22,11 @@ Auth::routes();
 Route::get('/w/create', 'WorkoutsController@create');
 Route::post('/w', 'WorkoutsController@store');
 
+Route::get('search', 'SearchController@index')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+
+Route::post('/follow/{user}', 'FollowsController@store');
+
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');

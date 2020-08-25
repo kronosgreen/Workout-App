@@ -11,4 +11,8 @@ class Workout extends Model
   public function user(){
     return $this->belongsTo(User::class);
   }
+
+  public function workoutType(){
+    return $this->belongsTo(WorkoutType::class);
+  }
 }

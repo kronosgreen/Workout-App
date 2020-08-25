@@ -15,14 +15,18 @@ class CreateWorkoutsTable extends Migration
     {
         Schema::create('workouts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('workout-name');
-            $table->integer('count')->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('workout_type_id');
+            $table->integer('count');
             $table->DateTime('date')->nullable();
             $table->string('unit')->nullable();
             $table->timestamps();
 
-            $table->index('user_id');
+        });
+
+        Schema::table('workouts', function(Blueprint $table) {
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('workout_type_id')->references('id')->on('workout_type');
         });
     }
 
